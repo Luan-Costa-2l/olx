@@ -17,15 +17,29 @@ export const Container = styled.div`
                 margin-right: 0;
             }
 
-            a {
+            a, button {
+                border: 0;
+                outline: 0;
+                font-size: 16px;
                 color: #000;
                 text-decoration: none;
+                background-color: #FFF;
+                cursor: pointer;
 
                 &.button {
                     padding: 5px 10px;
                     color: #FFF;
-                    border-radius: 10px;
+                    border-radius: 7px;
                     background-color: #FF8100;
+                }
+                &.button:hover {
+                    color: #FFF;
+                    background-color: #E57706;
+                }
+            }
+            a, button {
+                &:hover {
+                    color: #999;
                 }
             }
         }
