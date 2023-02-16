@@ -15,6 +15,36 @@ export const Header = () => {
                         <span className="logo-3">X</span>
                     </Link>
                 </C.Logo>
+                <nav>
+                    <ul>
+                        {logged &&
+                            <>
+                                <li>
+                                    <Link to="/my-account">Minha Conta</Link>
+                                </li>
+                                <li>
+                                    <button>Sair</button>    
+                                </li>
+                                <li>
+                                    <Link to="/add-an-ad" className='button'>Postar um anúncio</Link>
+                                </li>
+                            </>
+                        }
+                        {!logged &&
+                            <>
+                                <li>
+                                    <Link to="/signin">Login</Link>
+                                </li>
+                                <li>
+                                    <Link to="/signup">Cadastrar</Link>    
+                                </li>
+                                <li>
+                                    <Link to="/signin" className='button'>Postar um anúncio</Link>
+                                </li>
+                            </>
+                        }
+                    </ul>
+                </nav>
             </C.Container>
         </PageContainer>
     )

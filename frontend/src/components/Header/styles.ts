@@ -4,6 +4,32 @@ export const Container = styled.div`
     height: 60px;
     display: flex;
     align-items: center;
+
+    ul {
+        display: flex;
+        padding: 0;
+
+        li {
+            list-style: none;
+            margin-right: 40px;
+
+            &:last-child {
+                margin-right: 0;
+            }
+
+            a {
+                color: #000;
+                text-decoration: none;
+
+                &.button {
+                    padding: 5px 10px;
+                    color: #FFF;
+                    border-radius: 10px;
+                    background-color: #FF8100;
+                }
+            }
+        }
+    }    
 `;
 
 export const Logo = styled.div`
