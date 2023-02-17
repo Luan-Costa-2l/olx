@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom';
+import { isLogged } from '../../helpers/AuthHandler';
 import { PageContainer } from '../MainComponents';
 import * as C from './styles';
 
 export const Header = () => {
-    let logged = false; // exemple
+    let logged = isLogged();
 
     return (
         <PageContainer>
