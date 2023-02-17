@@ -1,14 +1,13 @@
 import { Link } from 'react-router-dom';
 import { isLogged } from '../../helpers/AuthHandler';
-import { PageContainer } from '../MainComponents';
 import * as C from './styles';
 
 export const Header = () => {
     let logged = isLogged();
 
     return (
-        <PageContainer>
-            <C.Container>
+        <C.HeaderArea>
+            <div className='container'>
                 <C.Logo>
                     <Link to="/">
                         <span className="logo-1">O</span>
@@ -46,7 +45,7 @@ export const Header = () => {
                         }
                     </ul>
                 </nav>
-            </C.Container>
-        </PageContainer>
+            </div>
+        </C.HeaderArea>
     )
 }

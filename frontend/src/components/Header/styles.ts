@@ -1,11 +1,16 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
-    height: 60px;
-    display: flex;
-    align-items: center;
+export const HeaderArea = styled.header`
+    border-bottom: 1px solid #CCC;
 
-    ul {
+    .container {
+        max-width: 1024px;
+        margin: auto;
+        height: 60px;
+        display: flex;
+        align-items: center;
+
+        ul {
         display: flex;
         padding: 0;
 
@@ -44,6 +49,7 @@ export const Container = styled.div`
             }
         }
     }    
+    }
 `;
 
 export const Logo = styled.div`
