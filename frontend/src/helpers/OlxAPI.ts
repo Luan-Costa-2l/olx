@@ -23,7 +23,13 @@ const apiFetchPost = async (endPoint: string, body: any) => {
 }
 
 const OlxAPI = {
-    
+    login: async (email: string, password: string) => {
+        let json = await apiFetchPost(
+            '/user/signin',
+            { email, password }
+        );
+        return json;
+    }
 }
 
 export default OlxAPI;
