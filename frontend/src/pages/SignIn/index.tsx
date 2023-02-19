@@ -1,18 +1,52 @@
-import { PageContainer, PageTitle } from '../../components/MainComponents';
+import { FormEvent, useState } from 'react';
+import { PageContainer, PageTitle, MessageError } from '../../components/MainComponents';
 import * as C from './styles';
+import OlxAPI from '../../helpers/OlxAPI';
+import { doLogin } from '../../helpers/AuthHandler';
 
 export const SignIn = () => {
+    const api = OlxAPI;
+
+    const [emailField, setEmailField] = useState('');
+    const [passwordField, setPasswordField] = useState('');
+    const [rememberPasswordField, setRememberPasswordField] = useState(false);
+    const [disabled, setDisabled] = useState(false);
+    const [error, setError] = useState('');
+
+    const handlerSubmit = async (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        setDisabled(true);
+        setError('');
+
+        const json = await api.login(emailField, passwordField);
+
+        if (json.error) {
+            setError(json.error);
+        } else {
+            doLogin(json.token, rememberPasswordField);
+            window.location.href = '/';
+            console.log(json.token)
+        }
+
+        setDisabled(false);
+    }
+
     return (
         <PageContainer>
             <C.PageArea>
                 <PageTitle>fazer login</PageTitle>
-                <C.FormArea>
+                {error &&
+                    <MessageError>
+                        {error}
+                    </MessageError>
+                }
+                <C.FormArea onSubmit={handlerSubmit}>
                     <div className="inputArea">
                         <label htmlFor='email' className='inputArea--label'>
                             E-mail:
                         </label>
                         <div className="inputArea--input">
-                            <input type="email" id='email' />
+                            <input type="email" id='email'value={emailField} onChange={e => setEmailField(e.target.value)} disabled={disabled} />
                         </div>
                     </div>
                     <div className="inputArea">
@@ -20,7 +54,7 @@ export const SignIn = () => {
                             Senha:
                         </label>
                         <div className="inputArea--input">
-                            <input type="password" id='password' />
+                            <input type="password" id='password' value={passwordField} onChange={e => setPasswordField(e.target.value)} disabled={disabled} />
                         </div>
                     </div>
                     <div className="inputArea">
@@ -28,7 +62,7 @@ export const SignIn = () => {
                             Lembrar senha:
                         </label>
                         <div className="inputArea--input">
-                            <input type="checkbox" id='checkbox' />
+                            <input type="checkbox" id='checkbox' checked={rememberPasswordField} onChange={() => setRememberPasswordField(!rememberPasswordField)} disabled={disabled} />
                         </div>
                     </div>
                     <div className="inputArea">
