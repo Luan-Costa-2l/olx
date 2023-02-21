@@ -67,11 +67,11 @@ export const SignUp = () => {
                         </div>
                     </div>
                     <div className="inputArea">
-                        <label htmlFor='password' className='inputArea--label'>
+                        <label htmlFor='RememberPassword' className='inputArea--label'>
                             Confirmar Senha:
                         </label>
                         <div className="inputArea--input">
-                            <input type="password" id='password' value={confirmPasswordField} onChange={e => setConfirmPasswordField(e.target.value)} disabled={disabled} />
+                            <input type="password" id='RememberPassword' value={confirmPasswordField} onChange={e => setConfirmPasswordField(e.target.value)} disabled={disabled} />
                         </div>
                     </div>
                     <div className="inputArea">
