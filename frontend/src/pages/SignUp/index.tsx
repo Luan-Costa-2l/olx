@@ -1,7 +1,8 @@
-import { FormEvent, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import { PageContainer, PageTitle, MessageError } from '../../components/MainComponents';
 import * as C from './styles';
 import OlxAPI from '../../helpers/OlxAPI';
+import { doLogin } from '../../helpers/AuthHandler';
 
 type StateListType = {
     _id: string;
@@ -32,6 +33,23 @@ export const SignUp = () => {
         event.preventDefault();
         setDisabled(true);
         setError('');
+
+        if (passwordField !== confirmPasswordField) {
+            setError("Senhas não batem!");
+            setDisabled(false);
+            return;
+        }
+
+        const json = await api.register(nameField, emailField, passwordField, stateField);
+
+
+        if (json.error) {
+            setError(json.error);
+        } else {
+            doLogin(json.token);
+            window.location.href = '/';
+        }
+
         setDisabled(false);
     }
 
