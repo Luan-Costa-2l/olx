@@ -3,6 +3,11 @@ import { PageContainer, PageTitle, MessageError } from '../../components/MainCom
 import * as C from './styles';
 import OlxAPI from '../../helpers/OlxAPI';
 
+type StateListType = {
+    _id: string;
+    name: string;
+}
+
 export const SignUp = () => {
     const api = OlxAPI;
 
@@ -13,6 +18,15 @@ export const SignUp = () => {
     const [confirmPasswordField, setConfirmPasswordField] = useState('');
     const [disabled, setDisabled] = useState(false);
     const [error, setError] = useState('');
+    const [stateList, setStateList] = useState<StateListType[]>([]);
+
+    useEffect(() => {
+        const getStates = async () => {
+            const response = await api.getStates();
+            setStateList(response);
+        }
+        getStates();
+    }, []);
 
     const handlerSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -45,8 +59,10 @@ export const SignUp = () => {
                         </label>
                         <div className="inputArea--input">
                             <select id="state" value={stateField} onChange={e => setStateField(e.target.value)}>
-                                <option value=""></option>
-                                <option value="exemple">exemple</option>
+                                <option></option>
+                                {stateList.map((item, index) => (
+                                    <option key={index} value={item._id}>{item.name}</option>
+                                ))}
                             </select>
                         </div>
                     </div>
