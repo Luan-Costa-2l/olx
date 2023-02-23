@@ -48,3 +48,28 @@ export const Form = styled.form`
         }
     }
 `;
+
+export const CategoryList = styled.div`
+    display: flex;
+    justify-content: space-between;
+`;
+
+export const CategoryItem = styled.div`
+    margin-top: 20px;
+    text-align: center;
+    cursor: pointer;
+
+    a {
+        color: #000;
+        text-decoration: none;
+        display: block;
+
+        p {
+            margin: 5px 0 0 0;
+        }
+    }
+
+    &:hover {
+        color: #999;
+    }
+`;

@@ -1,13 +1,15 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { PageContainer } from '../../components/MainComponents';
 import OlxAPI from '../../helpers/OlxAPI';
-import { StatesType } from '../../types';
+import { CategoriesType, StatesType } from '../../types';
 import * as C from './styles';
 
 export const Home = () => {
     const api = OlxAPI;
 
     const [states, setStates] = useState<StatesType[]>([]);
+    const [categories, setCategories] = useState<CategoriesType[]>([]);
 
     useEffect(() => {
         const fetchStates = async () => {
@@ -15,6 +17,14 @@ export const Home = () => {
             setStates(response);
         }
         fetchStates();
+    }, []);
+
+    useEffect(() => {
+        const fetchCategory = async () => {
+            let cat = await api.getCategories();
+            setCategories(cat);
+        }
+        fetchCategory();
     }, []);
 
     return (
@@ -32,6 +42,16 @@ export const Home = () => {
                             <button>Pesquisar</button>
                         </C.Form>
                     </C.SearchBox>
+                    <C.CategoryList>
+                        {categories.map((item, index) => (
+                            <C.CategoryItem key={index}>
+                                <Link to={`/ads?cat=${item.slug}`}>
+                                    <img src={item.img} alt={`${item.slug} category`} />
+                                    <p>{item.name}</p>
+                                </Link>
+                            </C.CategoryItem>
+                        ))}
+                    </C.CategoryList>
                 </PageContainer>
             </C.SearchArea>
         </>
