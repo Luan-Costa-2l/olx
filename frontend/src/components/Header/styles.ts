@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const HeaderArea = styled.header`
     border-bottom: 1px solid #CCC;
+    background-color: #FFF;
 
     .container {
         max-width: 1024px;
