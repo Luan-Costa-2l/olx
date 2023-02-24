@@ -73,3 +73,24 @@ export const CategoryItem = styled.div`
         color: #999;
     }
 `;
+
+export const PageArea = styled.main`
+    
+    .seeAllAds {
+        text-decoration: none;
+        display: inline-block;
+        margin-top: 15px;
+        color: #000;
+        font-weight: bold;
+
+        &:hover {
+            color: #333;
+        }
+    }
+`;
+
+export const AdsArea = styled.div`
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+`;

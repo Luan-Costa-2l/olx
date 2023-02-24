@@ -39,6 +39,11 @@ const apiFetchGet = async (endPoint: string, body: any = []) => {
     return json;
 }
 
+type OptionsType = {
+    sort: string;
+    limit: number;
+}
+
 const OlxAPI = {
     login: async (email: string, password: string) => {
         let json = await apiFetchPost(
@@ -61,6 +66,10 @@ const OlxAPI = {
     getCategories: async () => {
         const json = await apiFetchGet('/categories');
         return json.categories;
+    },
+    getAds: async (options: OptionsType) => {
+        const json = await apiFetchGet('/ad/list', options);
+        return json.ads;
     }
 }
 
