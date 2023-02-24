@@ -9,3 +9,11 @@ export type CategoriesType = {
     slug: string;
     _id: string;
 }
+
+export type AdType = {
+    id: string;
+    image: string;
+    price: number;
+    priceNegotiable: boolean;
+    title: string;
+}
