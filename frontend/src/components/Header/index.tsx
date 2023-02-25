@@ -31,7 +31,7 @@ export const Header = () => {
                                     <button onClick={handlerLogout}>Sair</button>    
                                 </li>
                                 <li>
-                                    <Link to="/add-an-ad" className='button'>Postar um anúncio</Link>
+                                    <Link to="/post-an-ad" className='button'>Postar um anúncio</Link>
                                 </li>
                             </>
                         }
