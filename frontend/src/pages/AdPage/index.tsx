@@ -1,7 +1,20 @@
 import { PageContainer, PageTitle } from "../../components/MainComponents"
 import { AdPageBody, Form } from "./styles"
+import OlxAPI from "../../helpers/OlxAPI"
+import { CategoriesType } from "../../types"
 
 export const AdPage = () => {
+    const api = OlxAPI;
+
+    const [categoryList, setCategoryList] = useState<CategoriesType[]>([]);
+
+    useEffect(() => {
+        const fetchCategory = async () => {
+            const cats = await api.getCategories();
+            setCategoryList(cats);
+        }
+        fetchCategory();
+    }, []);
     return (
         <PageContainer>
             <AdPageBody>
@@ -21,7 +34,12 @@ export const AdPage = () => {
                             Categoria:
                         </label>
                         <div className="inputArea--input">
-                            <select name="category" id="category"></select>
+                            <select name="category" id="category">
+                                <option value=""></option>
+                                {categoryList.map((item, index) => (
+                                    <option key={index} value={item.slug}>{item.name}</option>
+                                ))}
+                            </select>
                         </div>
                     </div>
 
