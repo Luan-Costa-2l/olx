@@ -4,6 +4,8 @@ import { MessageError, PageContainer, PageTitle } from "../../components/MainCom
 import { AdPageBody, Form } from "./styles"
 import OlxAPI from "../../helpers/OlxAPI"
 import { CategoriesType } from "../../types"
+import MaskedInput from 'react-text-mask'
+import { createNumberMask } from "text-mask-addons"
 
 export const AdPage = () => {
     const api = OlxAPI;
@@ -71,6 +73,14 @@ export const AdPage = () => {
         setDisabled(false);
     }
 
+    const numberMask = createNumberMask({
+        prefix: 'R$ ',
+        includeThousandsSeparator: true,
+        thousandsSeparatorSymbol: '.',
+        allowDecimal: true,
+        decimalSymbol: ',',
+    });
+
     return (
         <PageContainer>
             <AdPageBody>
@@ -109,7 +119,13 @@ export const AdPage = () => {
                             Preço:
                         </label>
                         <div className="inputArea--input">
-                            <input type="text" name="price" id="price" disabled={disabled} value={priceField} onChange={e => setPriceField(e.target.value)} />
+                            <MaskedInput 
+                                mask={numberMask} 
+                                placeholder="R$ " 
+                                disabled={disabled || priceNegotiableField} 
+                                value={priceField} 
+                                onChange={e => setPriceField(e.target.value)} 
+                            />
                         </div>
                     </div>
 
