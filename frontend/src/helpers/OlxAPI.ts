@@ -93,6 +93,10 @@ const OlxAPI = {
     getAds: async (options: OptionsType) => {
         const json = await apiFetchGet('/ad/list', options);
         return json.ads;
+    },
+    addAd: async (fData: FormData) => {
+        const json = await apiFetchFile('/ad/add', fData);
+        return json;
     }
 }
 

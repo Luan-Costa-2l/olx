@@ -1,12 +1,25 @@
-import { PageContainer, PageTitle } from "../../components/MainComponents"
+import { FormEvent, useEffect, useRef, useState } from "react"
+import { useNavigate } from "react-router-dom"
+import { MessageError, PageContainer, PageTitle } from "../../components/MainComponents"
 import { AdPageBody, Form } from "./styles"
 import OlxAPI from "../../helpers/OlxAPI"
 import { CategoriesType } from "../../types"
 
 export const AdPage = () => {
     const api = OlxAPI;
+    const navigate = useNavigate();
+    const fileField = useRef<HTMLInputElement>(null);
 
     const [categoryList, setCategoryList] = useState<CategoriesType[]>([]);
+
+    const [titleField, setTitleField] = useState('');
+    const [categoryField, setCategoryField] = useState('');
+    const [priceField, setPriceField] = useState('');
+    const [priceNegotiableField, setPriceNegotiableField] = useState(false);
+    const [descriptionField, setDescriptionField] = useState('');
+
+    const [disabled, setDisabled] = useState(false);
+    const [error, setError] = useState('');
 
     useEffect(() => {
         const fetchCategory = async () => {
@@ -15,17 +28,65 @@ export const AdPage = () => {
         }
         fetchCategory();
     }, []);
+
+    const handlerSubmit = async (e: FormEvent) => {
+        e.preventDefault();
+        setError('');
+        setDisabled(true);
+        let errors = [];
+
+        if (!titleField) {
+            errors.push('Sem título.');
+        }
+        if (!categoryField) {
+            errors.push('Sem categoria.');
+        }
+
+        if (errors.length === 0) {
+            const fData = new FormData();
+            fData.append('title', titleField);
+            fData.append('price', priceField);
+            fData.append('priceneg', priceNegotiableField.toString());
+            fData.append('desc', descriptionField);
+            fData.append('cat', categoryField);
+
+            if (fileField) {
+                if (fileField.current?.files?.length) {
+                    for (let i = 0; i < fileField.current?.files?.length; i++) {
+                        fData.append('img', fileField.current?.files[i]);
+                    }
+                }
+            }
+            const json = await api.addAd(fData);
+
+            if (!json.error) {
+                navigate(`/ad/${json.id}`);
+                return;
+            } else {
+                setError(json.error);
+            }
+        } else {
+            alert(errors.join('\n'));
+        }
+        setDisabled(false);
+    }
+
     return (
         <PageContainer>
             <AdPageBody>
                 <PageTitle>Postar anúncio</PageTitle>
-                <Form>
+                <Form onSubmit={handlerSubmit}>
+                    {error &&
+                        <MessageError>
+                            {error}
+                        </MessageError>
+                    }
                     <div className="inputArea">
                         <label htmlFor="title" className="inputArea--label">
                             Titulo:
                         </label>
                         <div className="inputArea--input">
-                            <input type="text" name="title" id="title" />
+                            <input type="text" name="title" id="title" value={titleField} onChange={e => setTitleField(e.target.value)} />
                         </div>
                     </div>
 
@@ -34,7 +95,7 @@ export const AdPage = () => {
                             Categoria:
                         </label>
                         <div className="inputArea--input">
-                            <select name="category" id="category">
+                            <select name="category" id="category" value={categoryField} onChange={e => setCategoryField(e.target.value)}>
                                 <option value=""></option>
                                 {categoryList.map((item, index) => (
                                     <option key={index} value={item.slug}>{item.name}</option>
@@ -48,7 +109,7 @@ export const AdPage = () => {
                             Preço:
                         </label>
                         <div className="inputArea--input">
-                            <input type="text" name="price" id="price" />
+                            <input type="text" name="price" id="price" value={priceField} onChange={e => setPriceField(e.target.value)} />
                         </div>
                     </div>
 
@@ -57,7 +118,7 @@ export const AdPage = () => {
                             Preço negociável:
                         </label>
                         <div className="inputArea--input">
-                            <input type="checkbox" name="negotiable" id="negotiable" />
+                            <input type="checkbox" name="negotiable" id="negotiable" checked={priceNegotiableField} onChange={e => setPriceNegotiableField(!priceNegotiableField)} />
                         </div>
                     </div>
 
@@ -66,7 +127,7 @@ export const AdPage = () => {
                             Descrição:
                         </label>
                         <div className="inputArea--input">
-                            <textarea name="description" id="description"></textarea>
+                            <textarea name="description" id="description" value={descriptionField} onChange={e => setDescriptionField(e.target.value)}></textarea>
                         </div>
                     </div>
 
@@ -75,7 +136,7 @@ export const AdPage = () => {
                             Imagens (1 ou mais):
                         </label>
                         <div className="inputArea--input">
-                            <input type="file" name="image" id="image" multiple />
+                            <input type="file" name="image" id="image" ref={fileField} multiple />
                         </div>
                     </div>
                     
