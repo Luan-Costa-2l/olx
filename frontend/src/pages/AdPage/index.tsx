@@ -86,7 +86,7 @@ export const AdPage = () => {
                             Titulo:
                         </label>
                         <div className="inputArea--input">
-                            <input type="text" name="title" id="title" value={titleField} onChange={e => setTitleField(e.target.value)} />
+                            <input type="text" name="title" id="title" disabled={disabled} value={titleField} onChange={e => setTitleField(e.target.value)} />
                         </div>
                     </div>
 
@@ -95,7 +95,7 @@ export const AdPage = () => {
                             Categoria:
                         </label>
                         <div className="inputArea--input">
-                            <select name="category" id="category" value={categoryField} onChange={e => setCategoryField(e.target.value)}>
+                            <select name="category" id="category" disabled={disabled} value={categoryField} onChange={e => setCategoryField(e.target.value)}>
                                 <option value=""></option>
                                 {categoryList.map((item, index) => (
                                     <option key={index} value={item.slug}>{item.name}</option>
@@ -109,7 +109,7 @@ export const AdPage = () => {
                             Preço:
                         </label>
                         <div className="inputArea--input">
-                            <input type="text" name="price" id="price" value={priceField} onChange={e => setPriceField(e.target.value)} />
+                            <input type="text" name="price" id="price" disabled={disabled} value={priceField} onChange={e => setPriceField(e.target.value)} />
                         </div>
                     </div>
 
@@ -118,7 +118,7 @@ export const AdPage = () => {
                             Preço negociável:
                         </label>
                         <div className="inputArea--input">
-                            <input type="checkbox" name="negotiable" id="negotiable" checked={priceNegotiableField} onChange={e => setPriceNegotiableField(!priceNegotiableField)} />
+                            <input type="checkbox" name="negotiable" id="negotiable" checked={priceNegotiableField} disabled={disabled} onChange={e => setPriceNegotiableField(!priceNegotiableField)} />
                         </div>
                     </div>
 
@@ -127,7 +127,7 @@ export const AdPage = () => {
                             Descrição:
                         </label>
                         <div className="inputArea--input">
-                            <textarea name="description" id="description" value={descriptionField} onChange={e => setDescriptionField(e.target.value)}></textarea>
+                            <textarea name="description" id="description" disabled={disabled} value={descriptionField} onChange={e => setDescriptionField(e.target.value)}></textarea>
                         </div>
                     </div>
 
@@ -136,14 +136,14 @@ export const AdPage = () => {
                             Imagens (1 ou mais):
                         </label>
                         <div className="inputArea--input">
-                            <input type="file" name="image" id="image" ref={fileField} multiple />
+                            <input type="file" name="image" id="image" disabled={disabled} ref={fileField} multiple />
                         </div>
                     </div>
                     
                     <div className="inputArea">
                         <label htmlFor="image" className="inputArea--label"></label>
                         <div className="inputArea--input">
-                            <button>Adicionar Anúncio</button>
+                            <button disabled={disabled}>Adicionar Anúncio</button>
                         </div>
                     </div>
                 </Form>
