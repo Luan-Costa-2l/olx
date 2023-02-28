@@ -7,7 +7,7 @@ import { CategoriesType } from "../../types"
 import MaskedInput from 'react-text-mask'
 import { createNumberMask } from "text-mask-addons"
 
-export const AdPage = () => {
+export const AddAd = () => {
     const api = OlxAPI;
     const navigate = useNavigate();
     const fileField = useRef<HTMLInputElement>(null);
