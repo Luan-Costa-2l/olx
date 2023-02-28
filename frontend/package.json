@@ -18,7 +18,9 @@
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.8.1",
-    "styled-components": "^5.3.6"
+    "react-text-mask": "^5.5.0",
+    "styled-components": "^5.3.6",
+    "text-mask-addons": "^3.8.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",
