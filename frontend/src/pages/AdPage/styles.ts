@@ -58,6 +58,11 @@ export const Form = styled.form`
                 border: 0;
                 border-radius: 3px;
                 font-weight: bold;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: #0069EE;
+                }
             }
         }
     }
