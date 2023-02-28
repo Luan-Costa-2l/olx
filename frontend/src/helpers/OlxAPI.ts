@@ -39,6 +39,29 @@ const apiFetchGet = async (endPoint: string, body: any = []) => {
     return json;
 }
 
+const apiFetchFile = async (endpoint: string, body: FormData) => {
+    if (!body.get('token')) {
+        let token = Cookies.get('token');
+        if (token) {
+            body.append('token', token);
+        }
+    }
+    const res = await fetch(BaseUrl+endpoint, {
+        method: 'POST',
+        body
+    });
+
+    const response = await res.json();
+
+    console.log(response)
+    if (response.notallowed) {
+        window.location.href = '/signin';
+        return;
+    }
+
+    return response;
+}
+
 type OptionsType = {
     sort: string;
     limit: number;
