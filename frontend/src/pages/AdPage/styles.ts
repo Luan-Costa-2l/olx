@@ -5,6 +5,17 @@ export const Fake = styled.div<{height?: number}>`
     height: ${props => props.height ?? 20}px;
 `;
 
+export const BreadChumb = styled.small`
+    margin-top: 20px;
+    display: block;
+
+    a {
+        display: inline-block;
+        color: #000;
+        margin: 0 5px;
+    }
+`;
+
 export const AdPageArea = styled.div`
     display: flex;
     margin-top: 20px;

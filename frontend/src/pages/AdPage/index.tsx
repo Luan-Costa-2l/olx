@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react"
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import OlxAPI from "../../helpers/OlxAPI"
 import { PageContainer } from "../../components/MainComponents"
 
-import { AdPageArea, Fake } from "./styles"
+import { AdPageArea, BreadChumb, Fake } from "./styles"
 import { ItemType } from "../../types"
 
 import { Slide } from "react-slideshow-image"
@@ -41,6 +41,18 @@ export const AdPage = () => {
 
     return (
         <PageContainer>
+            {adInfo &&
+                <BreadChumb>
+                    Você está aqui: 
+                    <Link to={`/`}>Home</Link>
+                    /
+                    <Link to={`/ads?state=${adInfo.stateName}`}>{adInfo.stateName}</Link>
+                    /
+                    <Link to={`/ads?state=${adInfo.stateName}&cat=${adInfo.category.slug}`}>{adInfo.category.name}</Link>
+                    /
+                    {adInfo.title}
+                </BreadChumb>
+            }
             <AdPageArea>
                 <div className="leftSide">
                     <div className="box">
