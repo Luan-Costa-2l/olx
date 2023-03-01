@@ -31,6 +31,15 @@ export const AdPageArea = styled.div`
         .adImage {
             width: 320px;
             height: 320px;
+
+            .each-slide {
+                height: 320px;
+                
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
         }
 
         .adInfo {

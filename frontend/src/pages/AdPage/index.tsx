@@ -6,6 +6,9 @@ import { PageContainer } from "../../components/MainComponents"
 import { AdPageArea, Fake } from "./styles"
 import { ItemType } from "../../types"
 
+import { Slide } from "react-slideshow-image"
+import 'react-slideshow-image/dist/styles.css'
+
 export const AdPage = () => {
     const api = OlxAPI;
     const { id } = useParams();
@@ -42,6 +45,15 @@ export const AdPage = () => {
                     <div className="box">
                         <div className="adImage">
                             {loading && <Fake height={320} />}
+                            {!loading && adInfo &&
+                                <Slide>
+                                    {adInfo.images.map((item, index) => (
+                                        <div key={index} className="each-slide">
+                                            <img src={item} alt="" />
+                                        </div>
+                                    ))}
+                                </Slide>
+                            }
                         </div>
                         <div className="adInfo">
                             <div className="adName">
