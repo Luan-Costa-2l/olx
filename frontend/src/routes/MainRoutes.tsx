@@ -1,5 +1,6 @@
 import { useRoutes } from 'react-router-dom';
 import { AddAd } from '../pages/AddAd';
+import { AdPage } from '../pages/AdPage';
 import { Home } from '../pages/Home';
 import { NotFound } from '../pages/NotFound';
 import { SignIn } from '../pages/SignIn';
@@ -11,7 +12,7 @@ export const MainRoutes = () => {
         {path: '/about', element: <Home />},
         {path: '/signin', element: <SignIn />},
         {path: '/signup', element: <SignUp />},
-        {path: '/ads/:id', element: <Home />},
+        {path: '/ads/:id', element: <AdPage />},
         {path: '/my-account', element: <Home />},
         {path: '/post-an-ad', element: <AddAd />},
         {path: '/ads', element: <Home />},

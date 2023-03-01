@@ -32,6 +32,27 @@ export const AdPageArea = styled.div`
             width: 320px;
             height: 320px;
         }
+
+        .adInfo {
+            flex: 1;
+            padding: 20px;
+
+            .adName {
+                margin-bottom: 20px;
+
+                h2 {
+                    margin: 0;
+                }
+                
+                small {
+                    color: #999;
+                }
+            }
+
+            .adDescription {
+
+            }
+        }
     }
 
     .rightSide {
