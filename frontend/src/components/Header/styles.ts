@@ -57,6 +57,7 @@ export const Logo = styled.div`
     flex: 1;
     font-size: 27px;
     font-weight: 700;
+    display: flex;
 
     a {
         text-decoration: none;
