@@ -8,6 +8,7 @@ import { ItemType } from "../../types"
 
 import { Slide } from "react-slideshow-image"
 import 'react-slideshow-image/dist/styles.css'
+import { formatPrice } from "../../helpers/formatPrice"
 
 export const AdPage = () => {
     const api = OlxAPI;
@@ -83,9 +84,23 @@ export const AdPage = () => {
                 <div className="rightSide">
                     <div className="box box--padding">
                         {loading && <Fake />}
+                        {!loading && adInfo &&
+                            <div className="price">
+                                Preço:
+                                <span>{formatPrice(adInfo.price)}</span>
+                            </div>
+                        }
                     </div>
+                    <a href="mailto:exemple@gmail.com" target="_blank" className="contactSellerLink">Fale com o Vendedor</a>
                     <div className="box box--padding">
                         {loading && <Fake height={50} />}
+                        {!loading && adInfo &&
+                            <address className="contact">
+                                <b>{adInfo.userInfo.name}</b>
+                                <small>E-mail: {adInfo.userInfo.email}</small>
+                                <small>Estado: {adInfo.stateName}</small>
+                            </address>
+                        }
                     </div>
                 </div>
             </AdPageArea>

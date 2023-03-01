@@ -66,5 +66,39 @@ export const AdPageArea = styled.div`
 
     .rightSide {
         width: 250px;
+
+        .price {
+
+            span {
+                color: #00F;
+                display: block;
+                font-weight: bold;
+                font-size: 27px;  
+            }
+        }
+
+        .contactSellerLink {
+            display: block;
+            line-height: 35px;
+            background-color: #00F;
+            text-decoration: none;
+            text-align: center;
+            color: #FFF;
+            border-radius: 7px;
+            box-shadow: 0px 0px 4px #999;
+            margin-bottom: 20px;
+
+            &:hover {
+                background-color: #00B;
+            }
+        }
+
+        .contact {
+            small {
+                color: #999;
+                display: block;
+                margin-top: 10px;
+            }
+        }
     }
 `;
