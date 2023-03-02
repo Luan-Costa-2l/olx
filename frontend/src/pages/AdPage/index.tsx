@@ -18,7 +18,7 @@ export const AdPage = () => {
     const [adInfo, setAdInfo] = useState<ItemType | null>(null);
 
     useEffect(() => {
-        const fetchAd = async () => {
+        const fetchAd = async (id: string | undefined) => {
             if (id) {
                 const ad = await api.getAd(id, true);
                 setLoading(false);
@@ -27,8 +27,8 @@ export const AdPage = () => {
                 alert("Erro, tente novamente.");
             }
         }
-        fetchAd();
-    }, []);
+        fetchAd(id);
+    }, [id]);
 
     const formatDate = (date: string) => {
         let fullDate = new Date(date);
