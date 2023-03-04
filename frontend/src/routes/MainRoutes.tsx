@@ -2,6 +2,7 @@ import { useRoutes } from 'react-router-dom';
 import { RequireAuth } from '../components/RequireAuth';
 import { AddAd } from '../pages/AddAd';
 import { AdPage } from '../pages/AdPage';
+import { Ads } from '../pages/Ads';
 import { Home } from '../pages/Home';
 import { NotFound } from '../pages/NotFound';
 import { SignIn } from '../pages/SignIn';
@@ -16,7 +17,7 @@ export const MainRoutes = () => {
         {path: '/ads/:id', element: <AdPage />},
         {path: '/my-account', element: <RequireAuth><AddAd /></RequireAuth>},
         {path: '/post-an-ad', element: <AddAd />},
-        {path: '/ads', element: <Home />},
+        {path: '/ads', element: <Ads />},
         {path: '*', element: <NotFound />},
     ])
 };
