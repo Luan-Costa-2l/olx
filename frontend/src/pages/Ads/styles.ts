@@ -28,6 +28,30 @@ export const AdsBody = styled.div`
             padding: 0;
             list-style-type: none;
         }
+
+        .categoryItem {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all .1s ease;
+
+            &:hover {
+                color: #FFF;
+                background-color: #9BB83C;
+            }
+
+            img {
+                width: 30px;
+                height: 30px;
+                margin-right: 5px;
+            }
+
+            span {
+                font-size: 14px;
+            }
+        }
     }
 
     .rightSide {

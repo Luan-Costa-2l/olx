@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react"
 import { PageContainer } from "../../components/MainComponents";
 import OlxAPI from "../../helpers/OlxAPI";
-import { StatesType } from "../../types";
+import { CategoriesType, StatesType } from "../../types";
 import { AdsBody } from "./styles";
 export const Ads = () => {
     const api = OlxAPI;
 
     const [states, setStates] = useState<StatesType[]>([]);
+    const [categories, setCategories] = useState<CategoriesType[]>([]);
 
     useEffect(() => {
         const fetchStates = async () => {
@@ -14,6 +15,14 @@ export const Ads = () => {
             setStates(sta);
         }
         fetchStates();
+    }, []);
+    
+    useEffect(() => {
+        const fetchCategories = async () => {
+            const cats = await api.getCategories();
+            setCategories(cats);
+        }
+        fetchCategories();
     }, []);
 
     return (
@@ -31,8 +40,12 @@ export const Ads = () => {
                         </select>
                         <div className="filterName">Categoria:</div>
                         <ul>
-                            <li>exemple</li>
-                            <li>exemple</li>
+                            {categories.map((item, index) => (
+                                <li key={index} className="categoryItem">
+                                    <img src={item.img} alt={item.name} />
+                                    <span>{item.name}</span>
+                                </li>
+                            ))}
                         </ul>
                     </form>
                 </div>
