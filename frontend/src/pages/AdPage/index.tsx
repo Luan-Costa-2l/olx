@@ -96,10 +96,15 @@ export const AdPage = () => {
                 <div className="rightSide">
                     <div className="box box--padding">
                         {loading && <Fake />}
+                        {adInfo && adInfo.priceNegotiable &&
+                            'Preço negociável'
+                        }
                         {!loading && adInfo &&
                             <div className="price">
                                 Preço:
-                                <span>{formatPrice(adInfo.price)}</span>
+                                {!adInfo.priceNegotiable &&
+                                    <span>{formatPrice(adInfo.price)}</span>
+                                }
                             </div>
                         }
                     </div>
