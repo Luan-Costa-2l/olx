@@ -10,20 +10,17 @@ export const Ads = () => {
     const [categories, setCategories] = useState<CategoriesType[]>([]);
 
     useEffect(() => {
-        const fetchStates = async () => {
-            const sta = await api.getStates();
+        const handleFetchs = async () => {
+            const [sta, cats] = await Promise.all([
+                api.getStates(), 
+                api.getCategories()
+            ]);
             setStates(sta);
-        }
-        fetchStates();
-    }, []);
-    
-    useEffect(() => {
-        const fetchCategories = async () => {
-            const cats = await api.getCategories();
             setCategories(cats);
         }
-        fetchCategories();
+        handleFetchs();
     }, []);
+
 
     return (
         <PageContainer>
