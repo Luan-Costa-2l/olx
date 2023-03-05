@@ -27,9 +27,12 @@ export const Ads = () => {
 
     const [adList, setAdList] = useState<AdType[]>([]);
     const [resultOpacity, setResultOpacity] = useState(1);
+    const [loading, setLoading] = useState(true);
 
     const getAdList = async () => {
+        setLoading(true);
         const ads = await api.getAds({ sort: 'desc', limit: 9, q, cat, state });
+        setLoading(false);
         setAdList(ads);
         setResultOpacity(1);
     }
@@ -103,6 +106,12 @@ export const Ads = () => {
                 </div>
                 <div className="rightSide">
                     <h2>Resultados</h2>
+                    {loading &&
+                        <div className="listWarning">Carregando...</div>
+                    }
+                    {!loading && !adList.length &&
+                        <div className="listWarning">Nenhum anúncio encontrado.</div>
+                    }
                     <div className="gridArea" style={{opacity: resultOpacity}}>
                         {adList.map((item, index) => (
                             <AdItem key={index} item={item}/>

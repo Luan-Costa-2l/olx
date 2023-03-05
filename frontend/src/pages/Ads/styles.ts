@@ -61,6 +61,12 @@ export const AdsBody = styled.div`
             margin-top: 0;
         }
 
+        .listWarning {
+            font-size: 20px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
         .gridArea {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
