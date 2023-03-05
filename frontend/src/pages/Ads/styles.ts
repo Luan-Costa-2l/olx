@@ -1,8 +1,9 @@
 import styled from "styled-components";
 
 export const AdsBody = styled.div`
-    margin-top: 20px;
+    padding: 20px 0;
     display: flex;
+    min-height: calc(100vh - 121px);
 
     .leftSide {
         max-width: 200px;
