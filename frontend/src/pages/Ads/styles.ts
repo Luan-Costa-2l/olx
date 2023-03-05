@@ -72,5 +72,30 @@ export const AdsBody = styled.div`
             grid-template-columns: repeat(3, 1fr);
             gap: 20px;
         }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+
+            .pagItem {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 30px;
+                height: 30px;
+                border: 1px solid #000;
+                font-size: 14px;
+                cursor: pointer;
+
+                &:hover, &.active {
+                    background-color: #CCC;
+                    border-color: #999;
+                }
+            }
+        }
     }
 `;

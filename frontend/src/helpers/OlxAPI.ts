@@ -68,6 +68,7 @@ type OptionsType = {
     q?: string;
     state?: string;
     cat?: string;
+    offset?: number;
 }
 
 const OlxAPI = {

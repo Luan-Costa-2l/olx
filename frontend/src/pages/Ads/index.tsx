@@ -26,14 +26,20 @@ export const Ads = () => {
     const [cat, setCat] = useState( query.get('cat') ?? '' );
 
     const [adList, setAdList] = useState<AdType[]>([]);
+    const [adsTotal, setAdsTotal] = useState(0);
+    const [pagesCount, setPagesCount] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
     const [resultOpacity, setResultOpacity] = useState(1);
     const [loading, setLoading] = useState(true);
 
     const getAdList = async () => {
+        let offset = (currentPage - 1) * 9;
+
         setLoading(true);
-        const ads = await api.getAds({ sort: 'desc', limit: 9, q, cat, state });
+        const ads = await api.getAds({ sort: 'desc', limit: 9, q, cat, state, offset });
         setLoading(false);
         setAdList(ads.ads);
+        setAdsTotal(ads.total);
         setResultOpacity(1);
     }
 
@@ -46,10 +52,23 @@ export const Ads = () => {
             ]);
             setStateList(sta);
             setCategories(cats);
-            setAdList(ads);
+            setAdList(ads.ads);
         }
         handleFetchs();
     }, []);
+
+    useEffect(() => {
+        if (adList.length > 0) {
+            setPagesCount(Math.ceil(adsTotal / adList.length));
+        } else {
+            setPagesCount(0);
+        }
+    }, [adsTotal]);
+
+    useEffect(() => {
+        setResultOpacity(0.3);
+        getAdList();
+    }, [currentPage]);
 
     useEffect(() => {
         let queryString: string[] = [];
@@ -73,8 +92,13 @@ export const Ads = () => {
             getAdList();
         }, 1000);
         setResultOpacity(0.3);
+        setCurrentPage(1);
     }, [q, state, cat]);
 
+    let pagination = [];
+    for (let i = 1; i <= pagesCount; i++) {
+        pagination.push(i);
+    }
 
     return (
         <PageContainer>
@@ -106,7 +130,7 @@ export const Ads = () => {
                 </div>
                 <div className="rightSide">
                     <h2>Resultados</h2>
-                    {loading &&
+                    {loading && adList.length === 0 &&
                         <div className="listWarning">Carregando...</div>
                     }
                     {!loading && !adList.length &&
@@ -115,6 +139,12 @@ export const Ads = () => {
                     <div className="gridArea" style={{opacity: resultOpacity}}>
                         {adList.map((item, index) => (
                             <AdItem key={index} item={item}/>
+                        ))}
+                    </div>
+
+                    <div className="pagination">
+                        {pagination.map((item, index) => (
+                            <div onClick={() => setCurrentPage(item)} className={item === currentPage ? 'pagItem active' : 'pagItem'} key={index}>{item}</div>
                         ))}
                     </div>
                 </div>
