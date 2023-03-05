@@ -33,7 +33,7 @@ export const Ads = () => {
         setLoading(true);
         const ads = await api.getAds({ sort: 'desc', limit: 9, q, cat, state });
         setLoading(false);
-        setAdList(ads);
+        setAdList(ads.ads);
         setResultOpacity(1);
     }
 

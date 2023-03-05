@@ -95,7 +95,7 @@ const OlxAPI = {
     },
     getAds: async (options: OptionsType) => {
         const json = await apiFetchGet('/ad/list', options);
-        return json.ads;
+        return json;
     },
     getAd: async (id: string, others: any) => {
         const json = await apiFetchGet(`/ad/item`, { id, others });

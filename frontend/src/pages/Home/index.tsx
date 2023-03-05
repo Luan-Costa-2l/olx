@@ -32,11 +32,11 @@ export const Home = () => {
 
     useEffect(() => {
         const fetchRecentAds = async () => {
-            let ads = await api.getAds({
+            let json = await api.getAds({
                 sort: 'desc',
                 limit: 8
             });
-            setAdsList(ads);
+            setAdsList(json.ads);
         }
         fetchRecentAds();
     }, []);
