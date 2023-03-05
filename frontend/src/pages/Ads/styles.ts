@@ -6,7 +6,7 @@ export const AdsBody = styled.div`
 
     .leftSide {
         max-width: 200px;
-        margin-right: 10px;
+        margin-right: 20px;
 
         .filterName {
             margin: 10px 0 5px 0;
@@ -56,5 +56,15 @@ export const AdsBody = styled.div`
 
     .rightSide {
         flex: 1;
+
+        h2 {
+            margin-top: 0;
+        }
+
+        .gridArea {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
     }
 `;

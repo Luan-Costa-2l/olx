@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react"
 import { useLocation, useNavigate } from "react-router-dom";
+import { AdItem } from "../../components/AdItem";
 import { PageContainer } from "../../components/MainComponents";
 import OlxAPI from "../../helpers/OlxAPI";
-import { CategoriesType, StatesType } from "../../types";
+import { AdType, CategoriesType, StatesType } from "../../types";
 import { AdsBody } from "./styles";
 
 let timer: number;
@@ -24,14 +25,25 @@ export const Ads = () => {
     const [state, setState] = useState( query.get('state') ?? '' );
     const [cat, setCat] = useState( query.get('cat') ?? '' );
 
+    const [adList, setAdList] = useState<AdType[]>([]);
+    const [resultOpacity, setResultOpacity] = useState(1);
+
+    const getAdList = async () => {
+        const ads = await api.getAds({ sort: 'desc', limit: 9, q, cat, state });
+        setAdList(ads);
+        setResultOpacity(1);
+    }
+
     useEffect(() => {
         const handleFetchs = async () => {
-            const [sta, cats] = await Promise.all([
+            const [sta, cats, ads] = await Promise.all([
                 api.getStates(), 
-                api.getCategories()
+                api.getCategories(),
+                api.getAds({ sort: 'desc', limit: 9 })
             ]);
             setStateList(sta);
             setCategories(cats);
+            setAdList(ads);
         }
         handleFetchs();
     }, []);
@@ -53,8 +65,11 @@ export const Ads = () => {
             clearTimeout(timer);
         }
 
-        timer = setTimeout(() => { navigate(`?${queryString.join('&')}`); }, 500);
-        
+        timer = setTimeout(() => {
+            navigate(`?${queryString.join('&')}`);
+            getAdList();
+        }, 1000);
+        setResultOpacity(0.3);
     }, [q, state, cat]);
 
 
@@ -87,7 +102,12 @@ export const Ads = () => {
                     </form>
                 </div>
                 <div className="rightSide">
-                    ...
+                    <h2>Resultados</h2>
+                    <div className="gridArea" style={{opacity: resultOpacity}}>
+                        {adList.map((item, index) => (
+                            <AdItem key={index} item={item}/>
+                        ))}
+                    </div>
                 </div>
             </AdsBody>
         </PageContainer>
