@@ -75,6 +75,7 @@ export const CategoryItem = styled.div`
 `;
 
 export const PageArea = styled.main`
+    min-height: calc(100vh - 380px);
     
     .seeAllAds {
         text-decoration: none;
