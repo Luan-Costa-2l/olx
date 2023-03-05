@@ -65,6 +65,9 @@ const apiFetchFile = async (endpoint: string, body: FormData) => {
 type OptionsType = {
     sort: string;
     limit: number;
+    q?: string;
+    state?: string;
+    cat?: string;
 }
 
 const OlxAPI = {
