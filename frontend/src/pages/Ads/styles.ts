@@ -37,7 +37,7 @@ export const AdsBody = styled.div`
             cursor: pointer;
             transition: all .1s ease;
 
-            &:hover {
+            &:hover, &.active {
                 color: #FFF;
                 background-color: #9BB83C;
             }
