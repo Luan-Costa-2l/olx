@@ -12,44 +12,44 @@ export const HeaderArea = styled.header`
         align-items: center;
 
         ul {
-        display: flex;
-        padding: 0;
+            display: flex;
+            padding: 0;
 
-        li {
-            list-style: none;
-            margin-right: 40px;
+            li {
+                list-style: none;
+                margin-right: 40px;
 
-            &:last-child {
-                margin-right: 0;
-            }
-
-            a, button {
-                border: 0;
-                outline: 0;
-                font-size: 16px;
-                color: #000;
-                text-decoration: none;
-                background-color: #FFF;
-                cursor: pointer;
-
-                &.button {
-                    padding: 5px 10px;
-                    color: #FFF;
-                    border-radius: 7px;
-                    background-color: #FF8100;
+                &:last-child {
+                    margin-right: 0;
                 }
-                &.button:hover {
-                    color: #FFF;
-                    background-color: #E57706;
+
+                a, button {
+                    border: 0;
+                    outline: 0;
+                    font-size: 16px;
+                    color: #000;
+                    text-decoration: none;
+                    background-color: #FFF;
+                    cursor: pointer;
+
+                    &.button {
+                        padding: 5px 10px;
+                        color: #FFF;
+                        border-radius: 7px;
+                        background-color: #FF8100;
+                    }
+                    &.button:hover {
+                        color: #FFF;
+                        background-color: #E57706;
+                    }
+                }
+                a, button {
+                    &:hover {
+                        color: #999;
+                    }
                 }
             }
-            a, button {
-                &:hover {
-                    color: #999;
-                }
-            }
-        }
-    }    
+        }    
     }
 `;
 
