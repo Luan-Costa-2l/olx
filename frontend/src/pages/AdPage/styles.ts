@@ -14,6 +14,10 @@ export const BreadChumb = styled.small`
         color: #000;
         margin: 0 5px;
     }
+
+    @media (max-width: 1030px) {
+        padding: 0 20px;
+    }
 `;
 
 export const AdPageArea = styled.div`
@@ -110,6 +114,41 @@ export const AdPageArea = styled.div`
                 display: block;
                 margin-top: 10px;
             }
+        }
+    }
+
+    @media (max-width: 1030px) {
+        padding: 0 20px;
+    }
+
+    @media (max-width: 880px) {
+        .leftSide {
+
+            .box {
+                flex-direction: column;
+                .adImage {
+                    margin: auto;
+                }
+            }
+        }
+    }
+
+    @media (max-width: 600px) {
+        flex-direction: column;
+        align-items: center;
+
+        .leftSide {
+            margin-right: 0;
+
+            .box {
+                max-width: 320px;
+                flex-direction: column;
+            }
+        }
+
+        .rightSide {
+            width: 100%;
+            max-width: 320px;
         }
     }
 `;
