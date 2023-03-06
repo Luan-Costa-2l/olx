@@ -51,6 +51,27 @@ export const HeaderArea = styled.header`
             }
         }    
     }
+
+    @media (max-width: 1030px) {
+        padding: 0 20px;
+    }
+
+    @media (max-width: 480px) {
+        .container {
+            height: auto;
+            flex-direction: column;
+
+            ul {
+                display: block;
+                text-align: center;
+
+                li {
+                    margin: auto;
+                    margin-bottom: 10px;
+                }
+            }
+        }
+    }
 `;
 
 export const Logo = styled.div`
