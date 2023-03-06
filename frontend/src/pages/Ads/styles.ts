@@ -99,4 +99,43 @@ export const AdsBody = styled.div`
             }
         }
     }
+
+    @media (max-width: 1030px) {
+        padding: 20px;
+    }
+
+    @media (max-width: 880px) {
+
+        .rightSide {
+
+            .gridArea {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    }
+
+    @media (max-width: 600px) {
+        flex-direction: column;
+
+        .leftSide {
+            max-width: 100%;
+            margin: 0;
+            margin-bottom: 20px;
+
+            ul {
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+
+                .categoryItem {
+                    width: 50%;
+                    flex-direction: column;
+
+                    img {
+                        margin-bottom: 5px;
+                    }
+                }
+            }
+        }
+    }
 `;
