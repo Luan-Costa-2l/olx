@@ -3,6 +3,10 @@ import styled from "styled-components";
 export const SearchArea = styled.div`
     background-color: #DDD;
     padding: 20px 0 40px 0;
+
+    @media (max-width: 1030px) {
+        padding: 20px;
+    }
 `;
 
 export const SearchBox = styled.div`
@@ -34,6 +38,7 @@ export const Form = styled.form`
     }
 
     button {
+        height: 40px;
         padding: 0px 20px;
         background-color: #49AEEF;
         border: 0;
@@ -47,11 +52,26 @@ export const Form = styled.form`
             background-color: #006FCE;
         }
     }
+
+    @media (max-width: 600px) {
+        flex-direction: column;
+
+        input, select {
+            margin: 0;
+            margin-bottom: 10px;
+        }
+
+        select {
+            height: 40px;
+            width: 100%;
+        }
+    }
 `;
 
 export const CategoryList = styled.div`
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
 `;
 
 export const CategoryItem = styled.div`
@@ -72,6 +92,10 @@ export const CategoryItem = styled.div`
     &:hover {
         color: #999;
     }
+
+    @media (max-width: 600px) {
+        width: 50%;
+    }
 `;
 
 export const PageArea = styled.main`
@@ -88,10 +112,23 @@ export const PageArea = styled.main`
             color: #333;
         }
     }
+
+    @media (max-width: 1030px) {
+        padding: 0 20px;
+    }
 `;
 
 export const AdsArea = styled.div`
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
+
+    
+    @media (max-width: 880px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    @media (max-width: 480px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
 `;
