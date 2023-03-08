@@ -4,6 +4,7 @@ import { AddAd } from '../pages/AddAd';
 import { AdPage } from '../pages/AdPage';
 import { Ads } from '../pages/Ads';
 import { Home } from '../pages/Home';
+import { MyAccount } from '../pages/MyAccount';
 import { NotFound } from '../pages/NotFound';
 import { SignIn } from '../pages/SignIn';
 import { SignUp } from '../pages/SignUp';
@@ -15,7 +16,7 @@ export const MainRoutes = () => {
         {path: '/signin', element: <SignIn />},
         {path: '/signup', element: <SignUp />},
         {path: '/ads/:id', element: <AdPage />},
-        {path: '/my-account', element: <RequireAuth><AddAd /></RequireAuth>},
+        {path: '/my-account', element: <RequireAuth><NotFound /></RequireAuth>},
         {path: '/post-an-ad', element: <AddAd />},
         {path: '/ads', element: <Ads />},
         {path: '*', element: <NotFound />},
