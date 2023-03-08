@@ -4,7 +4,6 @@ import { AddAd } from '../pages/AddAd';
 import { AdPage } from '../pages/AdPage';
 import { Ads } from '../pages/Ads';
 import { Home } from '../pages/Home';
-import { MyAccount } from '../pages/MyAccount';
 import { NotFound } from '../pages/NotFound';
 import { SignIn } from '../pages/SignIn';
 import { SignUp } from '../pages/SignUp';

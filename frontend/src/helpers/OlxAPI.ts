@@ -105,6 +105,10 @@ const OlxAPI = {
     addAd: async (fData: FormData) => {
         const json = await apiFetchFile('/ad/add', fData);
         return json;
+    },
+    getUser: async () => {
+        let token = Cookies.get('token');
+        return token;
     }
 }
 
