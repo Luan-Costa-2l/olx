@@ -1,7 +1,7 @@
 import Cookies from "js-cookie";
 import qs from 'qs';
 
-const BaseUrl = 'http://alunos.b7web.com.br:501';
+const BaseUrl = 'https://lcstore-api.onrender.com';
 
 const apiFetchPost = async (endPoint: string, body: any) => {
     if (!body.token) {
